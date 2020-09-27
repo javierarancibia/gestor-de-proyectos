@@ -1,12 +1,13 @@
 class ProjectsController < ApplicationController
-  http_basic_authenticate_with name: "desafiovamoscontodo", password: "XAHTJEAS23123%23", only: [:index]
+  
 
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @q = Project.ransack(params[:q])
+    @projects = @q.result(distinct: true)
   end
 
   # GET /projects/1
