@@ -1,31 +1,31 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Gestor de Proyectos</h1>
-
-div class="row">
-    <div class="col-md-3 offset-md-2">
-        <%= search_form_for @q do |f| %>
-            <div class="form-group">
-                <%= f.label :Busqueda_por_titulo_o_por_Autor %>
-                <%= f.search_field :title_or_description_or_author_cont, class: "formcontrol", placeholder: "Buscar por titulo" %>
-            </div>
-            <%= link_to 'Volver a pagina principal', root_path %>
-            <div class="form-group">
-                <%= f.label :status_eq, "Estado Actual del Libro" %>
-                <%= f.select :status_eq, options_for_select(Project.statuses ,
-                @q.status_eq), {},{class: "form-control"} %>
-            </div>
-
-            <%= f.submit "Buscar", class: "btn btn-primary" %>
-        <% end %>
-    </div>
+<%
+=begin%>
+ <div class="row">
+<div class="col-md-8 offset-md-2">
+<div class="jumbotron">
+<h1 class="display-4">Welcome to my blog!</h1>
+<hr class="my-4">
+<p>Read some awesome blog posts!!</p>
 </div>
-
-
-
-
-
-
+</div>
+</div>
+<div class="row">
+<div class="col-md-8 offset-md-2">
+<% @posts.each do |post| %>
+<div class="row">
+<div class="col-md-12"><h3><%= post.title%></h3></div>
+<div class="col-md-12 small">
+<span><strong>Created by:</strong> <span class="font-weight-light">
+<%= post.author %></span></span>
+<span><strong>on </strong> <span class="font-weight-light"><%=
+post.created_at %></span></span>
+</div>
+<div class="col-md-12"><p><%= post.description%></p></div>
+</div> 
+<%
+=end%>
 
 
 
